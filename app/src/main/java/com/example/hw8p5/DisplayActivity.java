@@ -43,7 +43,16 @@ public class DisplayActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-
+                        Intent intentHome = new Intent(DisplayActivity.this, HomeActivity.class);
+                        startActivity(intentHome);
+                        break;
+                    case R.id.navigation_map:
+                        Intent intentMap = new Intent(DisplayActivity.this, MapActivity.class);
+                        startActivity(intentMap);
+                        break;
+                    case R.id.navigation_history:
+                        Intent intentHis = new Intent(DisplayActivity.this, HistoryActivity.class);
+                        startActivity(intentHis);
                         break;
 
 

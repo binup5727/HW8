@@ -30,16 +30,21 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(MainActivity.this, HomeActivity.class);
-                        startActivity(intent0);
+                        Intent intentHome = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intentHome);
                         break;
                     case R.id.navigation_weather:
-                        Intent intent1 = new Intent(MainActivity.this, DisplayActivity.class);
-                        startActivity(intent1);
+                        Intent intentWeath = new Intent(MainActivity.this, DisplayActivity.class);
+                        startActivity(intentWeath);
+                        break;
                     case R.id.navigation_map:
-                        Intent intent2 = new Intent(MainActivity.this, MapActivity.class);
-                        startActivity(intent2);
+                        Intent intentMap = new Intent(MainActivity.this, MapActivity.class);
+                        startActivity(intentMap);
+                        break;
                     case R.id.navigation_history:
+                        Intent intentHis = new Intent(MainActivity.this, HistoryActivity.class);
+                        startActivity(intentHis);
+                        break;
 
                 }
                 return true;

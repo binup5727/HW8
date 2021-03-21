@@ -24,18 +24,17 @@ public class MapActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent0 = new Intent(MapActivity.this, HomeActivity.class);
-                        startActivity(intent0);
+                        Intent intentHome = new Intent(MapActivity.this, HomeActivity.class);
+                        startActivity(intentHome);
                         break;
                     case R.id.navigation_weather:
-                        Intent intent1 = new Intent(MapActivity.this, DisplayActivity.class);
-                        startActivity(intent1);
-                    case R.id.navigation_map:
-                        Intent intent2 = new Intent(MapActivity.this, MapActivity.class);
-                        startActivity(intent2);
+                        Intent intentWeath = new Intent(MapActivity.this, DisplayActivity.class);
+                        startActivity(intentWeath);
+                        break;
                     case R.id.navigation_history:
-                        Intent intent3 = new Intent(MapActivity.this, HistoryActivity.class);
-                        startActivity(intent3);
+                        Intent intentHis = new Intent(MapActivity.this, HistoryActivity.class);
+                        startActivity(intentHis);
+                        break;
 
                 }
                 return true;

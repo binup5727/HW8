@@ -86,13 +86,17 @@ public class HomeActivity extends AppCompatActivity implements OnSuccessListener
                 switch (item.getItemId()) {
 
                     case R.id.navigation_weather:
-                        Intent intent1 = new Intent(HomeActivity.this, DisplayActivity.class);
-                        startActivity(intent1);
+                        Intent intentWeath = new Intent(HomeActivity.this, DisplayActivity.class);
+                        startActivity(intentWeath);
+                        break;
                     case R.id.navigation_map:
-                        Intent intent2 = new Intent(HomeActivity.this, MapActivity.class);
-                        startActivity(intent2);
+                        Intent intentMap = new Intent(HomeActivity.this, MapActivity.class);
+                        startActivity(intentMap);
+                        break;
                     case R.id.navigation_history:
-
+                        Intent intentHis = new Intent(HomeActivity.this, HistoryActivity.class);
+                        startActivity(intentHis);
+                        break;
                 }
                 return true;
             }

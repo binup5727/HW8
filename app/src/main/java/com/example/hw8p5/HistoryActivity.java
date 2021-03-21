@@ -24,13 +24,16 @@ public class HistoryActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-
+                        Intent intentHome = new Intent(HistoryActivity.this, HomeActivity.class);
+                        startActivity(intentHome);
                         break;
                     case R.id.navigation_weather:
-
+                        Intent intentWeath = new Intent(HistoryActivity.this, DisplayActivity.class);
+                        startActivity(intentWeath);
                         break;
                     case R.id.navigation_map:
-
+                        Intent intentMap = new Intent(HistoryActivity.this, MapActivity.class);
+                        startActivity(intentMap);
                         break;
 
                 }

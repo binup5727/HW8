@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.Locale;
 
 public class DisplayActivity extends AppCompatActivity {
 
@@ -18,6 +22,7 @@ public class DisplayActivity extends AppCompatActivity {
     TextView min;
     TextView max;
     TextView feels;
+    TextToSpeech t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +43,9 @@ public class DisplayActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Intent intent = new Intent(DisplayActivity.this, HomeActivity.class);
-                        startActivity(intent);
+
                         break;
-                    case R.id.navigation_map:
-                        Intent intent1 = new Intent(DisplayActivity.this, MapActivity.class);
-                        startActivity(intent1);
-                        break;
-                    case R.id.navigation_history:
+
 
                 }
                 return true;
@@ -59,8 +59,14 @@ public class DisplayActivity extends AppCompatActivity {
         feels.setText("Feels like : " + String.valueOf(Math.floor(KtoF(Double.parseDouble(w.getFeelsLike()))))+ "F");
 
 
-
-
+        t1=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    t1.setLanguage(Locale.US);
+                }
+            }
+        });
 
 
 
@@ -71,4 +77,53 @@ public class DisplayActivity extends AppCompatActivity {
     public static double KtoF(Double k){
         return ((k - 273.15) * 9/5 + 32);
     }
+
+    public void onPresscity(View v){
+        String word = city.getText().toString();
+        System.out.println(word);
+
+        t1.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
+    public void onPresstemp(View v){
+        String word = temp.getText().toString();
+        System.out.println(word);
+
+        t1.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
+    public void onPressmin(View v){
+        String word = min.getText().toString();
+        System.out.println(word);
+
+        t1.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
+    public void onPressmax(View v){
+        String word = max.getText().toString();
+        System.out.println(word);
+
+        t1.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+    public void onPressfeels(View v){
+        String word = feels.getText().toString();
+        System.out.println(word);
+
+        t1.speak(word, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+
+    public void onPause(){
+        if(t1 !=null){
+            t1.stop();
+            t1.shutdown();
+        }
+        super.onPause();
+    }
+
+
 }

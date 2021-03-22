@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CustomAdapter extends ArrayAdapter<WeatherData> {
 
@@ -36,8 +37,10 @@ public class CustomAdapter extends ArrayAdapter<WeatherData> {
         TextView humid = convertView.findViewById(R.id.humid);
         System.out.println("added list");
 
+        Date t = new Date(d.getTimeLong()*1000);
+
         name.setText(d.getCityName());
-        time.setText(d.getTime());
+        time.setText("Date: " + t);
         temp.setText(d.getTemp());
         feels.setText(d.getFeelsLike());
         wind.setText(d.getWind());

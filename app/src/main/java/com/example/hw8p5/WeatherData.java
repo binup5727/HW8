@@ -1,9 +1,5 @@
 package com.example.hw8p5;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
 public class WeatherData {
     private String feelsLike;
     private String temp;
@@ -15,6 +11,7 @@ public class WeatherData {
     private String time;
     private String wind;
     private String humid;
+    private long timeLong;
 
     public WeatherData(){};
 
@@ -86,4 +83,9 @@ public class WeatherData {
     public String getWind() { return this.wind;}
 
     public String getHumid() { return this.humid;}
+
+    public void setTimeLong(long dt) {
+        this.timeLong = dt;
+    }
+    public Long getTimeLong(){return timeLong;}
 }

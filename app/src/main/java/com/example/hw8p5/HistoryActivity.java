@@ -79,7 +79,7 @@ public class HistoryActivity extends AppCompatActivity {
 
     public void getHistory(){
         final boolean[] move = {false};
-        int t = Integer.parseInt(data.getTime());
+        int t = (Integer.parseInt(data.getTime()));
         for(int i = 0; i < 5; i++){
 
             Time[i] = t;
@@ -137,7 +137,9 @@ public class HistoryActivity extends AppCompatActivity {
                             his.get(count).setWind(main.getString("wind_speed"));
 
                             his.get(count).setHumid(main.getString("humidity"));
-                            System.out.println("one loop");
+
+                            his.get(count).setTimeLong(main.getLong("dt"));
+                            System.out.println("time " );
 
                             if(count < 4){
                                 request(count + 1);

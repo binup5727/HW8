@@ -13,6 +13,8 @@ public class WeatherData {
     private String lat;
     private String lon;
     private String time;
+    private String wind;
+    private String humid;
 
     public WeatherData(){};
 
@@ -46,6 +48,10 @@ public class WeatherData {
 
     public void setTime(String T) {this.time = T;}
 
+    public void setWind(String w){this.wind = w;}
+
+    public void setHumid(String h){this.humid = h;}
+
 
     public String getTemp(){
         return this.temp;
@@ -77,4 +83,7 @@ public class WeatherData {
 
     public String getTime(){ return  this.time;}
 
+    public String getWind() { return this.wind;}
+
+    public String getHumid() { return this.humid;}
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,13 +19,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class HistoryActivity extends AppCompatActivity {
 
     WeatherData data = HomeActivity.getWeatherInstance();
-    WeatherData his [] = new WeatherData[5];
+    ArrayList<WeatherData> his = new ArrayList<WeatherData>(5);
     int Time [] = {0, 0, 0, 0, 0};
     private RequestQueue queue;
     String url[] = {"","","","",""};
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +64,11 @@ public class HistoryActivity extends AppCompatActivity {
         });
 
         getHistory();
-
-
+        ArrayList<WeatherData> arrayofWeath = his;
+        ListView simpleList;
+        simpleList = (ListView) findViewById(R.id.simplelistView);
+        CustomAdapter customAdapter = new CustomAdapter(this, his);
+        simpleList.setAdapter(customAdapter);
 
 
 
@@ -76,6 +84,7 @@ public class HistoryActivity extends AppCompatActivity {
 
             Time[i] = t;
             t = t - 86400;
+            his.add(new WeatherData());
 
 
         }
@@ -117,15 +126,25 @@ public class HistoryActivity extends AppCompatActivity {
                         try {
 
                             main = response.getJSONObject("current");
-                            System.out.println(main);
-                            his[count].setTemp(main.getString("temp"));
-                            his[count].setFeelsLike(main.getString("feels_like"));
-                            his[count].setCityName(response.getString("name"));
-                            his[count].setTempMax(main.getString("temp_max"));
-                            his[count].setTempMin(main.getString("temp_min"));
+
+
+                            his.get(count).setTemp(main.getString("temp"));
+
+                            his.get(count).setFeelsLike(main.getString("feels_like"));
+
+                            his.get(count).setCityName(data.getCityName());
+
+                            his.get(count).setWind(main.getString("wind_speed"));
+
+                            his.get(count).setHumid(main.getString("humidity"));
+                            System.out.println("one loop");
+
                             if(count < 4){
                                 request(count + 1);
+                            }else{
+                                return;
                             }
+
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
 

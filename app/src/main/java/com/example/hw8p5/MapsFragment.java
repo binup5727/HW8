@@ -26,7 +26,7 @@ import java.net.URL;
 public class MapsFragment extends Fragment {
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
-        WeatherData data = HomeActivity.getWeatherInstance();
+
         /**
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
@@ -38,14 +38,6 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            WeatherData w = HomeActivity.getWeatherInstance();
-            Double lat = Double.parseDouble(w.getLat());
-            Double lon = Double.parseDouble(w.getLon());
-            LatLng loc = new LatLng(lat,lon);
-            googleMap.addMarker(new MarkerOptions().position(loc).title("Marker in " + w.getCityName()));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
-            googleMap.moveCamera(CameraUpdateFactory.zoomTo(7));
-
             TileProvider tileProvider = new UrlTileProvider(256, 256) {
 
                 @Override
@@ -53,7 +45,6 @@ public class MapsFragment extends Fragment {
 
                     /* Define the URL pattern for the tile images */
                     String s = String.format("https://tile.openweathermap.org/map/temp_new/%d/%d/%d.png?appid=5febc3e931e53a87705a2d9f1997d199", zoom, x, y);
-
                     if (!checkTileExists(x, y, zoom)) {
                         return null;
                     }
@@ -77,7 +68,13 @@ public class MapsFragment extends Fragment {
                     return true;
                 }
             };
-
+            WeatherData w = HomeActivity.getWeatherInstance();
+            Double lat = Double.parseDouble(w.getLat());
+            Double lon = Double.parseDouble(w.getLon());
+            LatLng loc = new LatLng(lat,lon);
+            googleMap.addMarker(new MarkerOptions().position(loc).title("You are here!"));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(5));
             TileOverlay tileOverlay = googleMap.addTileOverlay(new TileOverlayOptions()
                     .tileProvider(tileProvider));
 

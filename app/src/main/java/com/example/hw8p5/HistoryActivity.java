@@ -11,10 +11,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    WeatherData data = HomeActivity.getWeatherInstance();
+    WeatherData History[] = new WeatherData[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -40,5 +45,16 @@ public class HistoryActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
+
+
+
     }
+
+    public void getHistory()
+
+
+
+
 }

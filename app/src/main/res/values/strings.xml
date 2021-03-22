@@ -6,6 +6,8 @@
     <string name="WEATHER_LON_SUFFIX">&amp;lon=</string>
     <string name="WEATHER_API_KEY">&amp;appid=5febc3e931e53a87705a2d9f1997d199</string>
     <string name="title_activity_display">DisplayActivity</string>
+    <string name="HISTORY_API_URL">https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=LAT&amp;lon=LON&amp;dt=TIME&amp;appid=API</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

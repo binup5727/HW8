@@ -39,12 +39,12 @@ public class CustomAdapter extends ArrayAdapter<WeatherData> {
 
         Date t = new Date(d.getTimeLong()*1000);
 
-        name.setText(d.getCityName());
+        name.setText("Weather data from " +d.getCityName());
         time.setText("Date: " + t);
-        temp.setText(d.getTemp());
-        feels.setText(d.getFeelsLike());
-        wind.setText(d.getWind());
-        humid.setText(d.getHumid());
+        temp.setText("Temperature: " + d.getTemp()  + "K");
+        feels.setText("Feels like: " +  d.getFeelsLike() + "K");
+        wind.setText("Wind Speed: " + d.getWind() + "mph");
+        humid.setText("Humidity: " + d.getHumid());
         System.out.println("added list");
 
 

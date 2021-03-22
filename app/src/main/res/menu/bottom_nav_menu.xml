@@ -13,11 +13,11 @@
 
     <item
         android:id="@+id/navigation_map"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_mp"
         android:title="@string/title_notifications" />
     <item
         android:id="@+id/navigation_history"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_his"
         android:title="@string/title_history" />
 
 </menu>

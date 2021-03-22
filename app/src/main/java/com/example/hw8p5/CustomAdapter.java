@@ -1,6 +1,7 @@
 package com.example.hw8p5;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class CustomAdapter extends ArrayAdapter<WeatherData> {
 
@@ -46,6 +48,7 @@ public class CustomAdapter extends ArrayAdapter<WeatherData> {
         wind.setText("Wind Speed: " + d.getWind() + "mph");
         humid.setText("Humidity: " + d.getHumid());
         System.out.println("added list");
+
 
 
         return convertView;

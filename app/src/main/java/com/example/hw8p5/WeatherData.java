@@ -12,6 +12,7 @@ public class WeatherData {
     private String tempMin;
     private String lat;
     private String lon;
+    private String time;
 
     public WeatherData(){};
 
@@ -43,6 +44,9 @@ public class WeatherData {
         this.lon = l;
     }
 
+    public void setTime(String T) {this.time = T;}
+
+
     public String getTemp(){
         return this.temp;
     }
@@ -70,5 +74,7 @@ public class WeatherData {
     public String getTempMin(){
         return this.tempMin;
     }
+
+    public String getTime(){ return  this.time;}
 
 }

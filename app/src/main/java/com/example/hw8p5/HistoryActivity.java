@@ -7,19 +7,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class HistoryActivity extends AppCompatActivity {
 
     WeatherData data = HomeActivity.getWeatherInstance();
-    WeatherData History[] = new WeatherData[5];
+    WeatherData his [] = new WeatherData[5];
+    int Time [] = {0, 0, 0, 0, 0};
+    private RequestQueue queue;
+    String url[] = {"","","","",""};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-
+        queue = Volley.newRequestQueue(this);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -46,15 +58,99 @@ public class HistoryActivity extends AppCompatActivity {
             }
         });
 
+        getHistory();
+
+
+
+
 
 
 
 
     }
 
-    public void getHistory()
+    public void getHistory(){
+        final boolean[] move = {false};
+        int t = Integer.parseInt(data.getTime());
+        for(int i = 0; i < 5; i++){
+
+            Time[i] = t;
+            t = t - 86400;
 
 
+        }
+
+
+
+
+        for(int i = 0; i < 5; i++) {
+
+            url[i] = getString(R.string.HISTORY_API_URL) + "lat=" + data.getLat() + "&lon=" + data.getLon() +
+                    "&dt=" + Time[i] + getString(R.string.WEATHER_API_KEY);
+
+
+            System.out.println(url[i]);
+        }
+
+        request(0);
+
+
+
+
+
+
+
+
+
+
+
+    }
+    public void request(int count){
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, url[count], null, new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        JSONObject main;
+                        try {
+
+                            main = response.getJSONObject("current");
+                            System.out.println(main);
+                            his[count].setTemp(main.getString("temp"));
+                            his[count].setFeelsLike(main.getString("feels_like"));
+                            his[count].setCityName(response.getString("name"));
+                            his[count].setTempMax(main.getString("temp_max"));
+                            his[count].setTempMin(main.getString("temp_min"));
+                            if(count < 4){
+                                request(count + 1);
+                            }
+                            //TODO : Bundle the weather object and send to next activity
+                            //Current implementation is just using static member
+
+
+                        } catch (JSONException e) {
+                            System.out.println("JSON EXPLOSION");
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("ERROR WITH VOLLEY REQUEST");
+
+                    }
+                });
+        queue.add(jsonObjectRequest);
+
+
+
+
+
+    }
 
 
 }

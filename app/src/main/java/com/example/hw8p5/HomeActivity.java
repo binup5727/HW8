@@ -257,6 +257,7 @@ public class HomeActivity extends AppCompatActivity implements OnSuccessListener
                             data.setCityName(response.getString("name"));
                             data.setTempMax(main.getString("temp_max"));
                             data.setTempMin(main.getString("temp_min"));
+                            data.setTime(response.getString("dt"));
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
 
@@ -306,6 +307,7 @@ public class HomeActivity extends AppCompatActivity implements OnSuccessListener
                             data.setCityName(response.getString("name"));
                             data.setTempMax(main.getString("temp_max"));
                             data.setTempMin(main.getString("temp_min"));
+                            data.setTime(response.getString("dt"));
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
 
@@ -357,6 +359,7 @@ public class HomeActivity extends AppCompatActivity implements OnSuccessListener
                             data.setCityName(response.getString("name"));
                             data.setTempMax(main.getString("temp_max"));
                             data.setTempMin(main.getString("temp_min"));
+                            data.setTime(response.getString("dt"));
                             //TODO : Bundle the weather object and send to next activity
                             //Current implementation is just using static member
 
